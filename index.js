@@ -1,3 +1,6 @@
+import express from 'express';
+var app = express();
+
 import edgeChromium from 'chrome-aws-lambda'
 
 // Importing Puppeteer core as default otherwise
@@ -10,7 +13,8 @@ import puppeteer from 'puppeteer-core'
 // system-agnostic options for Puppeteeer.
 const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
-export default async function (req, res) {
+
+app.get('/', (req, res) => {
   // Edge executable will return an empty string locally.
   const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE
   
@@ -30,4 +34,8 @@ export default async function (req, res) {
   await browser.close();
 
 res.send(items)
-}
+});
+
+app.listen(3000, () =>
+  console.log('Example app listening on port 3000!'),
+);
