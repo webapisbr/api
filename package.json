@@ -2,9 +2,8 @@
   "name": "demo",
   "version": "1.0.0",
   "description": "",
-  "main": "api/index.js",
+  "main": "index.js",
   "start": "node .",
-  "type": "module",
   "author": "",
   "license": "ISC",
   "engines": {
