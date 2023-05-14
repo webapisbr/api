@@ -1,33 +1,26 @@
 const express = require('express');
 const router = express.Router();
-var puppeteer = require("puppeteer");
+var edgeChromium = require("chrome-aws-lambda");
+var puppeteer = require("puppeteer-core");
 
-router.get('/:id', async function(req, res, next) {
-    const id = req.params.id;
-    if(id){
-        const items = await run(id);
-        res.statusCode = 200;
-        res.json({results: items});
-    }else{
-        res.statusCode = 400;
-        res.json({message: "Atributo inválido ou ausente"});
-    }
+router.get('', async function(req, res, next) {
+    const items = await run(id);
+    res.statusCode = 200;
+    res.json({results: items});
 });
 
-async function run(id){
-    const browser = await puppeteer.launch({headless: 'new'});
+async function run(){
+    const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+    const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE;
+    const browser = await puppeteer.launch({
+    executablePath,
+    args: edgeChromium.args,
+    headless: false,
+  });
     const page = await browser.newPage();
-    await page.goto(`https://instagram.com/${id}`);
-    await page.waitForTimeout(500);
-    const items = await page.evaluate(() => {
-        const nodeList = document.querySelectorAll('article img');
-        const imgArray = [...nodeList];
-        const list = imgArray.map(img => ({
-            src: img.src
-        }));
-        return list;
-    });
-    await browser.close();
+    await page.goto('https://google.com');
+    let items = await page.title();
+  await browser.close();
     return items;
 }
 
