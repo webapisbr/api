@@ -14,7 +14,7 @@ import puppeteer from 'puppeteer-core'
 const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   // Edge executable will return an empty string locally.
   const executablePath = await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE
   
