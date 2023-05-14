@@ -4,7 +4,7 @@ var edgeChromium = require("chrome-aws-lambda");
 var puppeteer = require("puppeteer-core");
 
 router.get('', async function(req, res, next) {
-    const items = await run(id);
+    const items = await run();
     res.statusCode = 200;
     res.json({results: items});
 });
