@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-var edgeChromium = require("chrome-aws-lambda");
-var puppeteer = require("puppeteer-core");
+
+import edgeChromium from 'chrome-aws-lambda';
+import puppeteer from 'puppeteer-core';
 
 router.get('', async function(req, res, next) {
     const items = await run();
