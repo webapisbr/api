@@ -5,10 +5,10 @@ const app = express();
 app.use(cors());
 
 const testeRouter = require('./routes/teste');
-//const instagramRouter = require('./routes/instagram');
+const instagramRouter = require('./routes/instagram');
 
 app.use('/teste', testeRouter);
-//app.use('/instagram', instagramRouter);
+app.use('/instagram', instagramRouter);
 
 app.use(function(req, res, next) {
     res.statusCode = 404;
