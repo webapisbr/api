@@ -4,7 +4,7 @@
   "description": "",
   "main": "api/index.js",
   "start": "node .",
-  "type": "module"
+  "type": "module",
   "author": "",
   "license": "ISC",
   "engines": {
